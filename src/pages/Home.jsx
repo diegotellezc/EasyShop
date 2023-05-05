@@ -6,6 +6,7 @@ const Home = () => {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
     const [productName, setProductName] = useState("")
+    const [currentCategory, setCurrentCategory] = useState(0)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,6 +18,9 @@ const Home = () => {
         return products.filter(product => product.title.toLowerCase().includes(productName.toLowerCase()))
     }, [products, productName])
     
+    const handleClickCategory = (e) => {
+        setCurrentCategory(+e.target.dataset.category)
+    }
 
     useEffect(() => {
         axiosEcommerce.get("categories")
@@ -25,10 +29,19 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
+        if(currentCategory === 0)
         axiosEcommerce.get("products")
         .then((res) => setProducts(res.data))
         .catch((err) => console.log(err))
-    }, [])
+    }, [currentCategory])
+
+    useEffect(() => {
+        if(currentCategory){
+            axiosEcommerce.get(`products?categoryId=${currentCategory}`)
+            .then((res) => setProducts(res.data))
+            .catch((err) => console.log(err))
+        }
+    }, [currentCategory])
 
     return (
         <main className='px-2'>
@@ -41,9 +54,9 @@ const Home = () => {
                 </div>
 
                 <ul>
-                    <li>All</li>
+                    <li className='cursor-pointer' onClick={handleClickCategory} data-category={0}>All</li>
                     {
-                        categories.map(({id, name}) => <li key={id}>{name}</li>)
+                        categories.map(({id, name}) => <li onClick={handleClickCategory} className='cursor-pointer' data-category={id} key={id}>{name}</li>)
                     }
                 </ul>
 
