@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound"
 function App() {
 
   return (
-    <>
+    <section className="grid grid-rows-[auto_1fr] min-h-screen font-['Yantramanav']">
       <Header />
 
       <Routes>
@@ -18,7 +18,11 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/purchases" element={<Purchases />} />
+        <Route>
+          <Route path="/purchases" element={<Purchases />} />
+
+        </Route>
+
 
         <Route path="/products/:id" element={<Product />} />
 
@@ -28,7 +32,7 @@ function App() {
 
 
       </Routes>
-    </>
+    </section>
   )
 }
 
