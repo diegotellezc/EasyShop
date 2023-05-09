@@ -5,6 +5,8 @@ import Purchases from "./pages/Purchases"
 import Product from "./pages/Product"
 import Header from "./components/layout/Header"
 import NotFound from "./pages/NotFound"
+import Cart from "./components/cart/Cart"
+import ProtectedAuth from "./components/auth/ProtectedAuth"
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        <Route>
+        <Route element={<ProtectedAuth />}>
           <Route path="/purchases" element={<Purchases />} />
 
         </Route>
@@ -28,10 +30,9 @@ function App() {
 
         <Route path="/*" element={<NotFound />} />
 
-
-
-
       </Routes>
+
+      <Cart />
     </section>
   )
 }
