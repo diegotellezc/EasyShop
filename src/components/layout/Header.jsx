@@ -15,7 +15,7 @@ const Header = () => {
     
 
     return (
-        <section className='h-[60px] flex items-center justify-between text-white bg-[#131921] shadow-sm shadow-dark-gray/70'>
+        <section className='fixed top-0 left-0 right-0 h-[60px] z-20 flex items-center justify-between text-white bg-[#131921] shadow-sm shadow-dark-gray/70'>
             <Link to={"/"} className='text-2xl xs:text-3xl ml-6 md:ml-8 md:text-3xl'>
                 <h1 className='font-bold'>Easy<span className='text-sad-yellow'>Shop</span></h1>
             </Link>

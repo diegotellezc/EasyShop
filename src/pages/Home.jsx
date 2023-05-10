@@ -44,20 +44,23 @@ const Home = () => {
     }, [currentCategory])
 
     return (
-        <main className='grid grid-cols-[auto,_1fr] w-full'>
+        <main className='flex w-full mt-[60px]'>
 
-            <aside className='w-[200px] pt-12 border-[1px] bg-light-gray'>
-                <ul className='p-4'>
-                    <li className='cursor-pointer' onClick={handleClickCategory} data-category={0}>All</li>
+            <aside className='w-[200px] pt-12 border-[1px] bg-light-gray hidden md:block'>
+                <h2 className='border-b-2 text-2xl p-4 flex items-center gap-2'>
+                    Categories <i className='bx bx-chevron-down'></i>
+                </h2>
+                <ul className=''>
+                    <li className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl' onClick={handleClickCategory} data-category={0}>All</li>
                     {
-                        categories.map(({id, name}) => <li onClick={handleClickCategory} className='cursor-pointer' data-category={id} key={id}>{name}</li>)
+                        categories.map(({id, name}) => <li onClick={handleClickCategory} className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl' data-category={id} key={id}>{name}</li>)
                     }
                 </ul>
             </aside>
 
 
-            <section className='pt-12 mx-2'>
-                {/* Search */}
+            <section className='pt-12 mx-2 flex-grow'>
+                {/* Search box */}
                 <form className='h-[45px] max-w-2xl mx-auto px-4' onSubmit={handleSubmit}>
                     <div className='flex w-full h-full border-[1px] rounded-md overflow-hidden'>
                         <input className='w-full py-3  outline-none pl-4 placeholder-slate-400' id="productName" type="text" placeholder='What are you looking for?' />

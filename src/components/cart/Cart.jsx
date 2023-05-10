@@ -9,10 +9,6 @@ const Cart = () => {
 
     const dispatch = useDispatch()
 
-    const handleClickChangeShowCart = () => {
-        dispatch(changeIsShowCart())
-    }
-
     const handleClickCheckout = () => {
         dispatch(purchaseCart())
     }
@@ -28,9 +24,8 @@ const Cart = () => {
 
 
     return (
-        <section className={`fixed top-0  ${isShowCart && token ? "right-0" : "-right-full"} bg-white h-screen w-[300px] shadow-xl duration-200 p-3 grid grid-rows-[auto_1fr_auto]`}>
+        <section className={`fixed top-0 ${isShowCart && token ? "right-0" : "-right-full"} bg-white pt-[90px] h-screen w-[300px] shadow-xl duration-200 p-3 grid grid-rows-[auto_1fr_auto] z-10`}>
             <h2 className='text-xl font-bold'>Shopping cart</h2>
-            <i onClick={handleClickChangeShowCart} className='bx bx-x absolute top-2 right-3 text-2xl hover:text-red-500 cursor-pointer'></i>
 
             {/* Cart products */}
             <section className='overflow-y-auto grid gap-10 py-4 content-start'>
@@ -43,7 +38,7 @@ const Cart = () => {
             <section className='grid grid-cols-2 py-10 border-t-[1px] border-gray-400'>
                 <span>Total</span>
                 <h4 className='text-end'>${totalPrice}</h4>
-                <button onClick={handleClickCheckout} className='w-full bg-red-500 transition-colors py-2 hover:bg-red-600 text-white rounded-sm mt-6 col-span-2'>Checkout</button>
+                <button onClick={handleClickCheckout} className='w-full bg-happy-yellow hover:bg-happy-yellow-hover transition-colors py-2 text-header-color font-semibold rounded-sm mt-6 col-span-2'>Checkout</button>
             </section>
         </section>
     )

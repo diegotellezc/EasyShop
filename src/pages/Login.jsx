@@ -9,7 +9,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
 
     const {token, user} = useSelector(store => store.userInfo)
-
+    console.log(user)
     const dispatch = useDispatch()
 
     const submit = (data) => {
@@ -22,20 +22,31 @@ const Login = () => {
     
 
     return (
-        <main className='bg-gray-100 grid place-content-center px-2'>
+        <main className='bg-gray-100 min-h-screen grid place-content-center px-2'>
 
             {
                 token ? (
-                    <section className='bg-white p-4 rounded-md text-center w-[300px] grid gap-6'>
-                        <i className='bx bxs-user-circle text-6xl'></i>
-                        <h3 className='capitalize'>{user?.firstName} {user?.lastName}</h3>
-                        <button onClick={handleClickLogout} className='bg-red-500 text-white rounded-md w-full py-2'>Logout</button>
+                    <section className='bg-white p-4 rounded-md text-center w-[300px] grid gap-6 overflow-x-hidden'>
+                        <div className='w-[120px] mx-auto'>
+                            <img className='' src="/images/logged.png" alt="logged" />
+                        </div>
+                        <div>
+                            <span className='text-medium-gray'>User</span>
+                            <h2 className='capitalize text-2xl'>{user?.firstName} {user?.lastName}</h2>
+                        </div>
+                        
+                        <div>
+                            <span className='text-medium-gray'>Email</span>
+                            <h3 className='text-lg'>{user?.email}</h3>
+                        </div>
+                        <button onClick={handleClickLogout} className='bg-happy-yellow hover:bg-happy-yellow-hover text-header-color rounded-md w-full py-2 text-bold transition-colors'>Logout</button>
                     </section>
                 ) : (
                     <form onSubmit={handleSubmit(submit)} className='bg-white p-4 rounded-md max-w-[360px] grid gap-6'>
-                <h2 className='text-2xl font-[500] text-gray-700'>Welcome! Enter your email and password to continue</h2>
+                <h2 className='text-3xl text-center font-[500] text-dark-blue'>Welcome! </h2>
+                <h3 className='text-xl text-center font-[500] text-dark-gray'>Enter your email and password to continue</h3>
 
-                <section className='bg-light-blue'>
+                <section className='bg-light-gray p-4'>
                     <h3 className='text-center font-bold'>Test data</h3>
 
                     <div className='flex gap-2 items-center'>
@@ -63,11 +74,11 @@ const Login = () => {
                     })} />
                 </div>
 
-                <button className='block w-full py-2 bg-red-500 text-white hover:bg-red-600 transition-colors'>Login</button>
+                <button className='block w-full py-2 bg-happy-yellow hover:bg-happy-yellow-hover text-header-color text-bold transition-colors'>Login</button>
 
-                <span className='text-sm flex gap-1'>
+                <span className='text-sm mx-auto flex gap-1'>
                     Don't have an account? 
-                    <Link to="#" className='text-blue-500'>Sign up</Link>
+                    <Link to="#" className='text-light-blue hover:underline '>Sign up</Link>
                 </span>
             </form>
                 )

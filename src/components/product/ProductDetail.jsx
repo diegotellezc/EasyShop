@@ -12,8 +12,6 @@ const stylePositionImages = {
 }
 
 
-
-
 const ProductDetail = ({productId}) => {
     const [productData, setProductData] = useState()
     const [counter, setCounter] = useState(1)
@@ -62,11 +60,14 @@ const ProductDetail = ({productId}) => {
         .then((res) => setProductData(res.data))
         .catch((err) => console.log(err))
     }, [productId])
+
+
+
     return (
-    <>
-        <section className='flex gap-2 items-center'>
+    <section className='mt-[60px]'>
+        <section className='flex gap-2 items-center py-4'>
                 <Link to={"/"}>Home</Link>
-                <div className='h-[7px] aspect-square bg-red-500 rounded-full'></div>
+                <div className='h-[7px] aspect-square bg-sad-yellow rounded-full'></div>
                 <span className='font-bold'>{productData?.title}</span>
         </section>
 
@@ -88,9 +89,9 @@ const ProductDetail = ({productId}) => {
                     </div>
                 </section>
 
-                <i onClick={previousImage} className='bx bx-chevron-left absolute top-1/2 -translate-y-1/2 left-2 text-white text-xl bg-red-500 rounded-full p-1 hover:text-red-400 cursor-pointer'></i>
+                <i onClick={previousImage} className='bx bx-chevron-left absolute top-1/2 -translate-y-1/2 left-2 text-black text-xl bg-happy-yellow hover:bg-happy-yellow-hover rounded-full p-1  cursor-pointer'></i>
 
-                <i onClick={nextImage} className='bx bx-chevron-right absolute top-1/2 -translate-y-1/2 right-2 text-white text-xl bg-red-500 rounded-full p-1 hover:text-red-400 cursor-pointer' ></i>
+                <i onClick={nextImage} className='bx bx-chevron-right absolute top-1/2 -translate-y-1/2 right-2 text-black text-xl bg-happy-yellow hover:bg-happy-yellow-hover rounded-full p-1  cursor-pointer' ></i>
             </section>
 
 
@@ -107,14 +108,14 @@ const ProductDetail = ({productId}) => {
                     <article>
                         <h4 className='text-gray-400 font-bold'>Quantity</h4>
                         <div className='flex items-center'>
-                            <button onClick={handleClickLess} className='border-[1px] py-2 px-4 hover:bg-red-500 hover:text-white'>-</button>
+                            <button onClick={handleClickLess} className='border-[1px] py-2 px-4 bg-light-gray hover:bg-happy-yellow-hover'>-</button>
                             <span className='border-y-[1px] py-2 px-4'>{counter}</span>
-                            <button onClick={handleClickPlus} className='border-[1px] py-2 px-4 hover:bg-red-500 hover:text-white'>+</button>
+                            <button onClick={handleClickPlus} className='border-[1px] py-2 px-4 bg-light-gray  hover:bg-happy-yellow-hover hover:text-white'>+</button>
                         </div>
                     </article>
                 </section>
 
-                <button onClick={handleClickAddToCart} className='w-full bg-red-500 py-2 text-white hover:bg-red-600 transition-colors rounded-sm mt-6'>
+                <button onClick={handleClickAddToCart} className='w-full bg-happy-yellow hover:bg-happy-yellow-hover py-2 text-black transition-colors rounded-sm mt-6 text-xl'>
                     Add to cart <i className='bx bx-cart'></i>
                 </button>
 
@@ -123,7 +124,7 @@ const ProductDetail = ({productId}) => {
         </section>
 
         <SimilarProducts productId={productData?.id} categoryId={productData?.categoryId} />
-    </>
+    </section>
 
     )
 }
