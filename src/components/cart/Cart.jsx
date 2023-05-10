@@ -26,6 +26,7 @@ const Cart = () => {
         }
     }, [isShowCart])
 
+
     return (
         <section className={`fixed top-0  ${isShowCart && token ? "right-0" : "-right-full"} bg-white h-screen w-[300px] shadow-xl duration-200 p-3 grid grid-rows-[auto_1fr_auto]`}>
             <h2 className='text-xl font-bold'>Shopping cart</h2>

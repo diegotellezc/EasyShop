@@ -15,18 +15,18 @@ const Header = () => {
     
 
     return (
-        <section>
-            <Link to={"/"}>
-                <h1>EasyShop</h1>
+        <section className='h-[60px] flex items-center justify-between text-white bg-[#131921] shadow-sm shadow-dark-gray/70'>
+            <Link to={"/"} className='text-2xl xs:text-3xl ml-6 md:ml-8 md:text-3xl'>
+                <h1 className='font-bold'>Easy<span className='text-sad-yellow'>Shop</span></h1>
             </Link>
 
-            <nav>
-                <Link to={"/login"}><i className='bx bx-user'></i> Login</Link>
+            <nav className='h-full grid grid-cols-3'>
+                <Link to={"/login"} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'><i className='bx bx-user'></i></Link>
 
-                <Link to={"/purchases"}><i className='bx bx-purchase-tag' ></i>Purchases</Link>
+                <Link to={"/purchases"} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'><i className='bx bx-purchase-tag' ></i></Link>
 
-                <button onClick={handleClickChangeShowCart}>
-                <i className='bx bx-cart'>Cart</i>
+                <button onClick={handleClickChangeShowCart} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'>
+                <i className='bx bx-cart'></i>
                 </button>
             </nav>
         </section>

@@ -5,9 +5,19 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addProductCart } from '../../store/slices/cart.slice'
 
+const stylePositionImages = {
+    "0": "-ml-[0%]",
+    "1": "-ml-[100%]",
+    "2": "-ml-[200%]"
+}
+
+
+
+
 const ProductDetail = ({productId}) => {
     const [productData, setProductData] = useState()
     const [counter, setCounter] = useState(1)
+    const [imageToShow, setImageToShow] = useState(0)
 
     const dispatch = useDispatch()
 
@@ -27,6 +37,24 @@ const ProductDetail = ({productId}) => {
         dispatch(addProductCart({quantity: counter, productId: productData.id }))
     }
     
+    const nextImage = () => {
+        const newImagePosition = imageToShow + 1
+        if(newImagePosition <= 2){
+            setImageToShow(newImagePosition)
+        } else {
+            setImageToShow(0)
+        }
+    }
+
+    const previousImage = () => {
+        const newImagePosition = imageToShow - 1
+        if(newImagePosition >= 0){
+            setImageToShow(newImagePosition)
+        } else {
+            setImageToShow(2)
+        }
+    }
+    
 
 
     useEffect(() => {
@@ -44,10 +72,25 @@ const ProductDetail = ({productId}) => {
 
 
         <section className='grid gap-6 sm:grid-cols-2 sm:items-center max-w-[1000px] mx-auto'>
-            <section>
-                <div className='h-[300px] p-4'>
-                    <img className='h-full w-full object-contain' src={productData?.images[0].url} alt={productData?.title} />
-                </div>
+            {/* Slider */}
+            <section className='overflow-hidden relative'>
+                <section className={`flex w-[300%] ${stylePositionImages[imageToShow]} duration-300`}>
+                    <div className='h-[300px w-[calc(100%_/_3)] p-4'>
+                        <img className='h-full w-full object-contain' src={productData?.images[0].url} alt={productData?.title} />
+                    </div>
+
+                    <div className='h-[300px] w-[calc(100%_/_3)] p-4'>
+                        <img className='h-full w-full object-contain' src={productData?.images[1].url} alt={productData?.title} />
+                    </div>
+
+                    <div className='h-[300px] w-[calc(100%_/_3)] p-4'>
+                        <img className='h-full w-full object-contain' src={productData?.images[2].url} alt={productData?.title} />
+                    </div>
+                </section>
+
+                <i onClick={previousImage} className='bx bx-chevron-left absolute top-1/2 -translate-y-1/2 left-2 text-white text-xl bg-red-500 rounded-full p-1 hover:text-red-400 cursor-pointer'></i>
+
+                <i onClick={nextImage} className='bx bx-chevron-right absolute top-1/2 -translate-y-1/2 right-2 text-white text-xl bg-red-500 rounded-full p-1 hover:text-red-400 cursor-pointer' ></i>
             </section>
 
 
