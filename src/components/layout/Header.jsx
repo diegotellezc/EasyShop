@@ -21,9 +21,15 @@ const Header = () => {
             </Link>
 
             <nav className='h-full grid grid-cols-3'>
-                <Link to={"/login"} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'><i className='bx bx-user'></i></Link>
+                <Link to={"/login"} className='px-3 xs:px-6 text-2xl flex justify-center items-center gap-3 xs:border-x-[1px] border-gray-300'>
+                    <i className='bx bx-user'></i>
+                    <h2 className='hidden lg:block text-lg'>User</h2>
+                </Link>
 
-                <Link to={"/purchases"} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'><i className='bx bx-purchase-tag' ></i></Link>
+                <Link to={"/purchases"} className='px-3 xs:px-6 text-2xl flex justify-center items-center gap-3 xs:border-x-[1px] border-gray-300'>
+                    <i className='bx bx-purchase-tag' ></i>
+                    <h2 className='hidden lg:block text-lg'>Purchases</h2>
+                </Link>
 
                 <button onClick={handleClickChangeShowCart} className='px-3 xs:px-6 text-2xl grid items-center justify-center xs:border-x-[1px] border-gray-300'>
                 <i className='bx bx-cart'></i>

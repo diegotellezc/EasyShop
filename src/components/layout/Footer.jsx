@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className='relative pt-12 pb-8 bg-dark-gray text-light-gray'>
+        <footer className='relative pt-12 pb-8 bg-dark-gray text-light-gray max-h-[500px]'>
             <div className='mb-4 text-center'>
                 <h3 className='text-sm sm:text-lg'>
                     © Easy<span className='text-sad-yellow'>Shop</span> 2023 | Developed by @diegotellezc

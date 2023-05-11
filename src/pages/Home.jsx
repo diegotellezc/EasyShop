@@ -3,6 +3,7 @@ import ProductCard from '../components/home/ProductCard'
 import { axiosEcommerce } from '../utils/configAxios'
 import LoaderHome from '../components/home/LoaderHome'
 
+
 const Home = () => {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState(null)

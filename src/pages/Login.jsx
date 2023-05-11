@@ -22,7 +22,7 @@ const Login = () => {
     
 
     return (
-        <main className='bg-gray-100 min-h-screen grid place-content-center px-2'>
+        <main className='bg-gray-100 mt-[60px] min-h-[calc(100vh_-_220px)] grid place-content-center px-2'>
 
             {
                 token ? (
