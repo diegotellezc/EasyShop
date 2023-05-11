@@ -64,20 +64,22 @@ const ProductDetail = ({productId}) => {
 
 
     return (
-    <section className='mt-[60px]'>
-        <section className='flex gap-2 items-center py-4'>
+    <section className='mt-[60px] px-2 max-w-[1300px] mx-auto'>
+        <section className='flex gap-2 items-center py-4 mt-7 md:mt-24'>
                 <Link to={"/"}>Home</Link>
+
                 <div className='h-[7px] aspect-square bg-sad-yellow rounded-full'></div>
-                <span className='font-bold'>{productData?.title}</span>
+
+                <span className='text-sm sm:text-md font-bold truncate'>{productData?.title}</span>
         </section>
 
 
-        <section className='grid gap-6 sm:grid-cols-2 sm:items-center max-w-[1000px] mx-auto'>
+        <section className='grid gap-6 md:gap-16 md:grid-cols-2 md:items-center max-w-[1200px] mx-auto'>
             {/* Slider */}
             <section className='overflow-hidden relative'>
                 <section className={`flex w-[300%] ${stylePositionImages[imageToShow]} duration-300`}>
                     <div className='h-[300px w-[calc(100%_/_3)] p-4'>
-                        <img className='h-full w-full object-contain' src={productData?.images[0].url} alt={productData?.title} />
+                        <img className='h-full w-full object-contain px-8' src={productData?.images[0].url} alt={productData?.title} />
                     </div>
 
                     <div className='h-[300px] w-[calc(100%_/_3)] p-4'>
@@ -94,12 +96,15 @@ const ProductDetail = ({productId}) => {
                 <i onClick={nextImage} className='bx bx-chevron-right absolute top-1/2 -translate-y-1/2 right-2 text-black text-xl bg-happy-yellow hover:bg-happy-yellow-hover rounded-full p-1  cursor-pointer' ></i>
             </section>
 
+            {/* Product info */}
+            <section className='flex flex-col gap-4'>
+                <div className='md:order-1'>
+                    <h4 className='text-gray-400 text-xl font-bold'>{productData?.brand}</h4>
+                    <h3 className='font-bold text-2xl ml-2'>{productData?.title}</h3>
+                </div>
+                
 
-            <section>
-                <h4 className='text-gray-400 font-bold mt-6'>{productData?.brand}</h4>
-                <h3 className='font-bold text-lg ml-2'>{productData?.title}</h3>
-
-                <section className='grid grid-cols-2'>
+                <section className='grid grid-cols-2 md:order-4'>
                     <article>
                         <h4 className='text-gray-400 font-bold'>Price</h4>
                         <span className='font-bold text-lg ml-2'>{productData?.price}</span>
@@ -115,11 +120,12 @@ const ProductDetail = ({productId}) => {
                     </article>
                 </section>
 
-                <button onClick={handleClickAddToCart} className='w-full bg-happy-yellow hover:bg-happy-yellow-hover py-2 text-black transition-colors rounded-sm mt-6 text-xl'>
-                    Add to cart <i className='bx bx-cart'></i>
+                <button onClick={handleClickAddToCart} className='flex md:order-4 gap-2 justify-center items-center w-full bg-happy-yellow hover:bg-happy-yellow-hover py-2 text-black transition-colors rounded-md text-xl'>
+                    Add to cart 
+                    <i className='bx bx-cart'></i>
                 </button>
 
-                <p className='text-sm my-6 text-gray-700'>{productData?.description}</p>
+                <p className='text-sm my-2 text-gray-700 flex md:order-2'>{productData?.description}</p>
             </section>
         </section>
 
