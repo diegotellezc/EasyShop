@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { axiosEcommerce, getConfig } from '../utils/configAxios'
 import PurchaseCard from '../components/purchases/PurchaseCard'
+import LoaderPurchases from '../components/purchases/LoaderPurchases'
 
 const Purchases = () => {
-    const [purchases, setPurchases] = useState([])
+    const [purchases, setPurchases] = useState(null)
 
-    const filteredPurchases = purchases.slice(0,20)
+    const filteredPurchases = purchases?.slice(0,20)
     
     useEffect(() => {
         axiosEcommerce.get("purchases", getConfig())
@@ -26,11 +27,19 @@ const Purchases = () => {
                 <span className='font-bold'>Purchases</span>
             </section>
 
-            <section className='grid gap-6 py-6'>
+            {
+                purchases === null ? (
+                    <LoaderPurchases />
+                ) : (
+                    <section className='grid gap-6 py-6 sm:mx-6'>
                 {
                     filteredPurchases.map(purchase => <PurchaseCard key={purchase.id} purchase={purchase} /> )
                 }
-            </section>
+                    </section>
+                )
+            }
+            
+            
         </main>
     )
 }

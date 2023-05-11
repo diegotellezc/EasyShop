@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import ProductCard from '../components/home/ProductCard'
 import { axiosEcommerce } from '../utils/configAxios'
+import LoaderHome from '../components/home/LoaderHome'
 
 const Home = () => {
     const [categories, setCategories] = useState([])
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState(null)
     const [productName, setProductName] = useState("")
     const [currentCategory, setCurrentCategory] = useState(0)
 
@@ -15,7 +16,7 @@ const Home = () => {
     }
     
     const productsByName = useMemo(() => {
-        return products.filter(product => product.title.toLowerCase().includes(productName.toLowerCase()))
+        return products?.filter(product => product.title.toLowerCase().includes(productName.toLowerCase()))
     }, [products, productName])
     
     const handleClickCategory = (e) => {
@@ -71,11 +72,18 @@ const Home = () => {
                 </form>
 
                 {/* Products */}
-                <section className='grid gap-8 py-6 mb-8 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(220px,_320px))] justify-center mx-auto'>
+                {
+                    products === null ? (
+                    <LoaderHome />
+                ) : (
+                    <section className='grid gap-8 py-6 mb-8 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(220px,_320px))] justify-center mx-auto'>
                     {
                         productsByName.map(product => <ProductCard key={product.id} product={product} />)
                     }
                 </section>
+                )
+            }
+                
 
             </section>
         </main>
