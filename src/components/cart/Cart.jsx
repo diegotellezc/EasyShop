@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeIsShowCart, getCartProducts, purchaseCart } from '../../store/slices/cart.slice'
+import { getCartProducts, purchaseCart } from '../../store/slices/cart.slice'
 import CartProduct from './CartProduct'
 
 const Cart = () => {
@@ -8,6 +8,8 @@ const Cart = () => {
     const {token} = useSelector(store => store.userInfo)
 
     const dispatch = useDispatch()
+
+    
 
     const handleClickCheckout = () => {
         dispatch(purchaseCart())
@@ -37,7 +39,7 @@ const Cart = () => {
             {/* Checkout */}
             <section className='grid grid-cols-2 py-10 border-t-[1px] border-gray-400'>
                 <span>Total</span>
-                <h4 className='text-end'>${totalPrice}</h4>
+                <h4 className='text-end font-bold text-orange text-xl'>${(totalPrice).toFixed(2)}</h4>
                 <button onClick={handleClickCheckout} className='w-full bg-happy-yellow hover:bg-happy-yellow-hover transition-colors py-2 text-header-color font-semibold rounded-sm mt-6 col-span-2'>Checkout</button>
             </section>
         </section>

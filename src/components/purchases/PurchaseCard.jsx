@@ -19,7 +19,7 @@ const PurchaseCard = ({ purchase } ) => {
                     <span className='p-2 border-[1px] border-gray-400'>{purchase.quantity}</span>
                 </div>
 
-                <h4 className='font-bold text-orange sm:text-xl'>${(purchase.quantity * purchase.product.price).toFixed(2)}</h4>
+                <h4 className='font-bold text-orange sm:text-xl sm:w-[70px]'>${(purchase.quantity * purchase.product.price).toFixed(2)}</h4>
             </section>
         </article>
     )

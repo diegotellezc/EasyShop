@@ -26,7 +26,7 @@ const Login = () => {
 
             {
                 token ? (
-                    <section className='bg-white p-4 rounded-md text-center w-[300px] grid gap-6 overflow-x-hidden'>
+                    <section className='bg-white p-4 rounded-md text-center w-[300px] grid gap-6 overflow-x-hidden '>
                         <div className='w-[120px] mx-auto'>
                             <img className='' src="/images/logged.png" alt="logged" />
                         </div>

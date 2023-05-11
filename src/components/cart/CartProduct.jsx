@@ -32,17 +32,17 @@ const CartProduct = ({product}) => {
                     <img className='h-full w-full object-contain' src={product.product.images[2].url} alt="" />
                 </div>
                 <h4 className='text-bold'>{product.product.title}</h4>
-                <i onClick={handleClickDelete} className='bx bx-trash text-red-500 cursor-pointer'></i>
+                <i onClick={handleClickDelete} className='bx bx-trash text-dark-blue hover:text-red-500 cursor-pointer'></i>
                 <div className='flex items-center'>
-                            <button onClick={handleClickLess} className='border-[1px] py-1 px-2 hover:bg-red-500 hover:text-white'>-</button>
-                            <span className='border-y-[1px] py-1 px-4'>{counter}</span>
-                            <button onClick={handleClickPlus} className='border-[1px] py-1 px-2 hover:bg-red-500 hover:text-white'>+</button>
+                            <button onClick={handleClickLess} className='border-[1px] py-1 px-2 bg-light-gray hover:bg-happy-yellow-hover'>-</button>
+                            <span className='border-y-[1px] py-1 px-3'>{product.quantity}</span>
+                            <button onClick={handleClickPlus} className='border-[1px] py-1 px-2 bg-light-gray hover:bg-happy-yellow-hover'>+</button>
                         </div>
             </section>
 
             <section>
                 <h4 className='mt-3 text-end'> Total
-                    <span className='ml-2 font-bold text-orange text-xl'> ${(counter * product.product.price).toFixed(2)}</span>
+                    <span className='ml-2 font-bold text-orange text-xl'> ${(product.quantity * product.product.price).toFixed(2)}</span>
                 </h4>
             </section>
         </article>

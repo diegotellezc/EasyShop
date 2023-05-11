@@ -44,10 +44,10 @@ const Home = () => {
     }, [currentCategory])
 
     return (
-        <main className='flex w-full mt-[60px]'>
+        <main className='flex w-full mt-[60px] min-h-screen'>
 
             <aside className='w-[200px] pt-12 border-[1px] bg-light-gray hidden md:block'>
-                <h2 className='border-b-2 text-2xl p-4 flex items-center gap-2'>
+                <h2 className='border-b-2 text-2xl p-4 flex items-center gap-2 hover:scale-105'>
                     Categories <i className='bx bx-chevron-down'></i>
                 </h2>
                 <ul className=''>
@@ -71,7 +71,7 @@ const Home = () => {
                 </form>
 
                 {/* Products */}
-                <section className='grid gap-8 py-6 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(220px,_320px))] justify-center mx-auto'>
+                <section className='grid gap-8 py-6 mb-8 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(220px,_320px))] justify-center mx-auto'>
                     {
                         productsByName.map(product => <ProductCard key={product.id} product={product} />)
                     }
