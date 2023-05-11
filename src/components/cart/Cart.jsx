@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartProducts, purchaseCart } from '../../store/slices/cart.slice'
 import CartProduct from './CartProduct'
+import Swal from 'sweetalert2'
 
 const Cart = () => {
     const { isShowCart, products } = useSelector(store => store.cart)
@@ -11,6 +12,7 @@ const Cart = () => {
 
     const handleClickCheckout = () => {
         dispatch(purchaseCart())
+        
     }
     
     const totalPrice = products.reduce((acc, curr) => acc + (curr.quantity * curr.product.price), 0)

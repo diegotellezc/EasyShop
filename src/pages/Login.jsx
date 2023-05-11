@@ -9,7 +9,6 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
 
     const {token, user} = useSelector(store => store.userInfo)
-    console.log(user)
     const dispatch = useDispatch()
 
     const submit = (data) => {

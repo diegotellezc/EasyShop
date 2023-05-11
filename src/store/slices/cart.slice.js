@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { axiosEcommerce } from "../../utils/configAxios";
 import { getConfig } from "../../utils/configAxios";
+import Swal from 'sweetalert2'
 
 const initialState = {
     products: [],
@@ -31,8 +32,27 @@ export const getCartProducts = () => (dispatch) => {
 
 export const addProductCart = (data) => (dispatch) => {
     axiosEcommerce.post("cart", data, getConfig())
-    .then(() => dispatch(getCartProducts()))
-    .catch((err) => console.log(err))
+    .then(() => {
+        dispatch(getCartProducts())
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            iconColor: "#F3A847",
+            title: 'Product added to cart',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            color: '#242F3E',
+            confirmButtonColor: '#F3A847'
+        })
+    } )
 }
 
 export const deleteProductCart = (id) => (dispatch) => {
@@ -49,8 +69,30 @@ export const updateProductQuantityCart = (id, data) => (dispatch) => {
 
 export const purchaseCart = () => (dispatch) => {
     axiosEcommerce.post(`purchases`, {}, getConfig())
-    .then(() => dispatch(getCartProducts()))
-    .catch((err) => console.log(err))
+    .then(() => {
+        dispatch(getCartProducts())
+        Swal.fire({
+            icon: 'success',
+            iconColor: '#F3A847',
+            title: 'Thank you for your purchase!',
+            showConfirmButton: true,
+            color: '#242F3E',
+            confirmButtonColor: '#F3A847',
+            backdrop: `
+                rgba(54, 55, 54,0.5)
+            `
+        })
+    } )
+    .catch((err) => {
+        console.log(err)
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            color: '#242F3E',
+            confirmButtonColor: '#F3A847'
+        })
+    } )
 }
 
 export default cartSlice.reducer

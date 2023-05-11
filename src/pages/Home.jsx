@@ -63,7 +63,7 @@ const Home = () => {
 
             <section className='pt-12 mx-2 flex-grow'>
                 {/* Search box */}
-                <form className='h-[45px] max-w-2xl mx-auto px-4' onSubmit={handleSubmit}>
+                <form className='h-[45px] max-w-2xl mx-auto px-4 mb-4 md:mb-8' onSubmit={handleSubmit}>
                     <div className='flex w-full h-full border-[1px] rounded-md overflow-hidden'>
                         <input className='w-full py-3  outline-none pl-4 placeholder-slate-400' id="productName" type="text" placeholder='What are you looking for?' />
                         <button className='bg-happy-yellow hover:bg-happy-yellow-hover h-full aspect-square'>

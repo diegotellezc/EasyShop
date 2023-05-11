@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addProductCart } from '../../store/slices/cart.slice'
-import Swal from 'sweetalert2'
 
 const ProductCard = ({product}) => {
     const dispatch = useDispatch()
