@@ -41,6 +41,12 @@ export const deleteProductCart = (id) => (dispatch) => {
     .catch((err) => console.log(err))
 }
 
+export const updateProductQuantityCart = (id, data) => (dispatch) => {
+    axiosEcommerce.put(`cart/${id}`, data, getConfig())
+    .then(() => dispatch(getCartProducts()))
+    .catch((err) => console.log(err))
+}
+
 export const purchaseCart = () => (dispatch) => {
     axiosEcommerce.post(`purchases`, {}, getConfig())
     .then(() => dispatch(getCartProducts()))

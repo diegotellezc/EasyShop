@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteProductCart } from '../../store/slices/cart.slice'
+import { deleteProductCart, updateProductQuantityCart } from '../../store/slices/cart.slice'
 
 const CartProduct = ({product}) => {
     const [counter, setCounter] = useState(1)
@@ -14,12 +14,14 @@ const CartProduct = ({product}) => {
     const handleClickPlus = () => {
         const newCounter = counter + 1
         setCounter(newCounter)
+        dispatch(updateProductQuantityCart(product.id, {"quantity": newCounter}))
     }
     
     const handleClickLess = () => {
         const newCounter = counter - 1
         if(newCounter > 0) {
             setCounter(newCounter)
+            dispatch(updateProductQuantityCart(product.id, {"quantity": newCounter}))
         }
     }
     
@@ -29,7 +31,7 @@ const CartProduct = ({product}) => {
         <article className='border-[1px] p-2'>
             <section className='grid grid-cols-[auto_1fr_auto] gap-2'>
                 <div className='h-[90px] aspect-square row-span-2 p-2'>
-                    <img className='h-full w-full object-contain' src={product.product.images[2].url} alt="" />
+                    <img className='h-full w-full object-contain' src={product.product.images[0].url} alt="" />
                 </div>
                 <h4 className='text-bold'>{product.product.title}</h4>
                 <i onClick={handleClickDelete} className='bx bx-trash text-dark-blue hover:text-red-500 cursor-pointer'></i>

@@ -21,21 +21,25 @@ const Purchases = () => {
 
     return (
         <main className='px-2 max-w-[900px] mx-auto mt-[60px] min-h-screen mb-8'>
-            <section className='flex gap-2 items-center mb-4  mt-7 md:mt-16'>
-                <Link to={"/"}>Home</Link>
-                <div className='h-[7px] aspect-square bg-sad-yellow rounded-full'></div>
-                <span className='font-bold'>Purchases</span>
-            </section>
+            
 
             {
                 purchases === null ? (
                     <LoaderPurchases />
                 ) : (
+                <>
+                    <section className='flex gap-2 items-center mb-4 ml-2 mt-7 md:mt-16'>
+                        <Link to={"/"}>Home</Link>
+                        <div className='h-[7px] aspect-square bg-sad-yellow rounded-full'></div>
+                        <span className='font-bold'>Purchases</span>
+                    </section>
+
                     <section className='grid gap-6 py-6 sm:mx-6'>
                 {
                     filteredPurchases.map(purchase => <PurchaseCard key={purchase.id} purchase={purchase} /> )
                 }
                     </section>
+                </>
                 )
             }
             
