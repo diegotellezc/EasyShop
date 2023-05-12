@@ -9,12 +9,17 @@ const Home = () => {
     const [products, setProducts] = useState(null)
     const [productName, setProductName] = useState("")
     const [currentCategory, setCurrentCategory] = useState(0)
+    const [showCategories, setShowCategories] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const newProductName = e.target.productName.value
         setProductName(newProductName)
     }
+
+    const toggleCategories = () => {
+        setShowCategories(!showCategories);
+    };
     
     const productsByName = useMemo(() => {
         return products?.filter(product => product.title.toLowerCase().includes(productName.toLowerCase()))
@@ -49,14 +54,33 @@ const Home = () => {
         <main className='flex w-full mt-[60px] min-h-screen'>
 
             <aside className='w-[200px] pt-12 border-[1px] bg-light-gray hidden md:block'>
-                <h2 className='border-b-2 text-2xl p-4 flex items-center gap-2 hover:scale-105'>
-                    Categories <i className='bx bx-chevron-down'></i>
-                </h2>
-                <ul className=''>
-                    <li className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl' onClick={handleClickCategory} data-category={0}>All</li>
-                    {
-                        categories.map(({id, name}) => <li onClick={handleClickCategory} className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl' data-category={id} key={id}>{name}</li>)
-                    }
+                <button onClick={toggleCategories}
+                    className='border-b-2 text-2xl p-4 flex items-center gap-2 hover:scale-105'>
+                    <h2>Categories</h2>
+                    <i className={`bx bx-chevron-down ${showCategories ? 'rotate-180' : ''}`}></i>
+                </button>
+
+                <ul className={`transition-all duration-500 ${
+                    showCategories ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                    } overflow-hidden`}>
+                        <li className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl'
+                        onClick={handleClickCategory}
+                        data-category={0}
+                        > All </li>
+
+
+                        {
+                            categories.map(({ id, name }) => (
+                                <li
+                                    onClick={handleClickCategory}
+                                    className='cursor-pointer text-lg p-4 hover:bg-happy-yellow hover:text-xl'
+                                    data-category={id}
+                                    key={id}
+                                >
+                                    {name}
+                                </li>
+                            ))
+                        }
                 </ul>
             </aside>
 
@@ -71,6 +95,26 @@ const Home = () => {
                         </button>
                     </div>
                 </form>
+
+                <ul className='transition-all flex flex-wrap gap-2 justify-center items-center duration-500 overflow-hidden md:hidden'>
+                        <li className='cursor-pointer border-[1px] rounded-md text-sm py-2 px-4 hover:bg-happy-yellow'
+                        onClick={handleClickCategory}
+                        data-category={0}
+                        > All </li>
+
+                        {
+                            categories.map(({ id, name }) => (
+                                <li
+                                    onClick={handleClickCategory}
+                                    className='border-[1px] cursor-pointer rounded-md text-sm py-2 px-4 hover:bg-happy-yellow'
+                                    data-category={id}
+                                    key={id}
+                                >
+                                    {name}
+                                </li>
+                            ))
+                        }
+                </ul>
 
                 {/* Products */}
                 {
