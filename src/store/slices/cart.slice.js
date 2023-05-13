@@ -48,7 +48,7 @@ export const addProductCart = (data) => (dispatch) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'You must be logged in to perform this action!',
             color: '#242F3E',
             confirmButtonColor: '#F3A847'
         })
@@ -88,7 +88,7 @@ export const purchaseCart = () => (dispatch) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'You must be logged in to perform this action!',
             color: '#242F3E',
             confirmButtonColor: '#F3A847'
         })
